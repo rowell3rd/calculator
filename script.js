@@ -10,20 +10,30 @@ const num8 = document.querySelector('.num8')
 const num9 = document.querySelector('.num9')
 const displayValue = document.querySelector('.display-value')
 
+//FUNCTION BUTTON
+
+const addBtn =  document.querySelector('.operation-add')
+const subtractBtn =  document.querySelector('.operation-subtract')
+const multiplyBtn =  document.querySelector('.operation-multiply')
+const divideBtn =  document.querySelector('.operation-divide')
+const equalsBtn =  document.querySelector('.operation-equals')
+const clearBtn =  document.querySelector('.operation-clear')
+
+
 function add(a,b){
-    return a +b 
+    displayValue.value = a + b 
 }
 
 function subtract(a,b){
-    return a-b 
+    displayValue.value= a-b 
 }
 
 function multiply(a,b){
-    return a*b
+    displayValue.value= a*b
 }
 
 function divide(a,b){
-    return a/b
+    displayValue.value= a/b
 }
 
 
@@ -53,11 +63,49 @@ num8.addEventListener('click',() => displayNumber(8))
 num9.addEventListener('click',() => displayNumber(9))
 
 
+// SAVE VALUE AND DISPLAY
+let firstValue 
+let nowValue 
+let operator
 
 function displayNumber(num){
     displayValue.value = num
+    nowValue = num
+    return nowValue
 }
 
-// displayValue.addEventListener(' ')
+// OPERATIONS FUNCTION
+addBtn.addEventListener('click', () => {
+    firstValue = nowValue
+    nowValue = ''
+    operator = '+'
+})
+subtractBtn.addEventListener('click', () => {
+    firstValue = nowValue
+    nowValue = ''
+    operator = '-'
+})
+multiplyBtn.addEventListener('click', () => {
+    firstValue = nowValue
+    nowValue = ''
+    operator = '*'
+})
+divideBtn.addEventListener('click', () => {
+    firstValue = nowValue
+    nowValue = ''
+    operator = '/'
+})
 
-// displayValue.value = 8
+equalsBtn.addEventListener('click', () =>{
+
+    operate(operator,firstValue,nowValue)
+})
+
+clearBtn.addEventListener('click', () => {
+
+    firstValue = ''
+    nowValue = ''
+    displayValue.value = ''
+})
+
+// displayValue.textContent = '343'
