@@ -52,33 +52,37 @@ function operate(symbol, num1, num2){
 
 //BUTTONS
 
-num1.addEventListener('click',() => displayNumber(1))
-num2.addEventListener('click',() => displayNumber(2))
-num3.addEventListener('click',() => displayNumber(3))
-num4.addEventListener('click',() => displayNumber(4))
-num5.addEventListener('click',() => displayNumber(5))
-num6.addEventListener('click',() => displayNumber(6))
-num7.addEventListener('click',() => displayNumber(7))
-num8.addEventListener('click',() => displayNumber(8))
-num9.addEventListener('click',() => displayNumber(9))
+num1.addEventListener('click',() => displayNumber("1"))
+num2.addEventListener('click',() => displayNumber("2"))
+num3.addEventListener('click',() => displayNumber("3"))
+num4.addEventListener('click',() => displayNumber("4"))
+num5.addEventListener('click',() => displayNumber("5"))
+num6.addEventListener('click',() => displayNumber("6"))
+num7.addEventListener('click',() => displayNumber("7"))
+num8.addEventListener('click',() => displayNumber("8"))
+num9.addEventListener('click',() => displayNumber("9"))
 
 
 // SAVE VALUE AND DISPLAY
-let firstValue 
-let nowValue 
+
+let nowValue = ''
 let operator
+let numberPrev
 
 function displayNumber(num){
-    displayValue.value = num
-    nowValue = num
+    
+    nowValue += num
+    displayValue.value = nowValue
+    // nowValue = num
     return nowValue
 }
 
 // OPERATIONS FUNCTION
 addBtn.addEventListener('click', () => {
-    firstValue = nowValue
+    
+    numberPrev = parseInt(nowValue)
     nowValue = ''
-    operator = '+'
+    operator = "+"
 })
 subtractBtn.addEventListener('click', () => {
     firstValue = nowValue
@@ -97,8 +101,9 @@ divideBtn.addEventListener('click', () => {
 })
 
 equalsBtn.addEventListener('click', () =>{
+    numberNow = parseInt(nowValue)
+    operate(operator,numberPrev, numberNow )
 
-    operate(operator,firstValue,nowValue)
 })
 
 clearBtn.addEventListener('click', () => {
