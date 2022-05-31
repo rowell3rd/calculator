@@ -68,12 +68,14 @@ num9.addEventListener('click',() => displayNumber("9"))
 let nowValue = ''
 let operator
 let numberPrev
+let nextValue
+let totalValue = 0
+let detectClick = 0
 
 function displayNumber(num){
     
     nowValue += num
     displayValue.value = nowValue
-    // nowValue = num
     return nowValue
 }
 
@@ -83,19 +85,25 @@ addBtn.addEventListener('click', () => {
     numberPrev = parseInt(nowValue)
     nowValue = ''
     operator = "+"
+    detectClick++
+    if(detectClick>=1){
+        nextValue =  numberPrev + parseInt(displayValue.value) 
+        totalValue += parseInt(displayValue.value)
+        displayValue.value = totalValue
+    }
 })
 subtractBtn.addEventListener('click', () => {
-    firstValue = nowValue
+    numberPrev = parseInt(nowValue)
     nowValue = ''
     operator = '-'
 })
 multiplyBtn.addEventListener('click', () => {
-    firstValue = nowValue
+    numberPrev = parseInt(nowValue)
     nowValue = ''
     operator = '*'
 })
 divideBtn.addEventListener('click', () => {
-    firstValue = nowValue
+    numberPrev = parseInt(nowValue)
     nowValue = ''
     operator = '/'
 })
@@ -108,8 +116,11 @@ equalsBtn.addEventListener('click', () =>{
 
 clearBtn.addEventListener('click', () => {
 
-    firstValue = ''
+    numberPrev = ''
     nowValue = ''
+    totalValue = 0
+    nextValue = ''
+    detectClick = 0
     displayValue.value = ''
 })
 
