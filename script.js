@@ -8,6 +8,7 @@ const num6 = document.querySelector('.num6')
 const num7 = document.querySelector('.num7')
 const num8 = document.querySelector('.num8')
 const num9 = document.querySelector('.num9')
+const num0 = document.querySelector('.num0')
 const displayValue = document.querySelector('.display-value')
 
 //FUNCTION BUTTON
@@ -61,6 +62,7 @@ num6.addEventListener('click',() => displayNumber("6"))
 num7.addEventListener('click',() => displayNumber("7"))
 num8.addEventListener('click',() => displayNumber("8"))
 num9.addEventListener('click',() => displayNumber("9"))
+num0.addEventListener('click',() => displayNumber("0"))
 
 
 // SAVE VALUE AND DISPLAY
@@ -71,6 +73,7 @@ let numberPrev
 let nextValue
 let totalValue = 0
 let detectClick = 0
+let newTotalValue = 0
 
 function displayNumber(num){
     
@@ -87,7 +90,7 @@ addBtn.addEventListener('click', () => {
     operator = "+"
     detectClick++
     if(detectClick>=1){
-        nextValue =  numberPrev + parseInt(displayValue.value) 
+        // nextValue =  numberPrev + parseInt(displayValue.value) 
         totalValue += parseInt(displayValue.value)
         displayValue.value = totalValue
     }
@@ -96,6 +99,19 @@ subtractBtn.addEventListener('click', () => {
     numberPrev = parseInt(nowValue)
     nowValue = ''
     operator = '-'
+    detectClick++
+    if(detectClick == 1){
+        totalValue = numberPrev
+    }
+    if(detectClick == 2){
+        totalValue = totalValue - displayValue.value
+        displayValue.value = totalValue
+    }
+    if(detectClick> 2){
+        totalValue = totalValue - displayValue.value 
+        displayValue.value = totalValue
+        // totalValue = newTotalValue
+    }
 })
 multiplyBtn.addEventListener('click', () => {
     numberPrev = parseInt(nowValue)
