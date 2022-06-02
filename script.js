@@ -90,7 +90,6 @@ addBtn.addEventListener('click', () => {
     operator = "+"
     detectClick++
     if(detectClick>=1){
-        // nextValue =  numberPrev + parseInt(displayValue.value) 
         totalValue += parseInt(displayValue.value)
         displayValue.value = totalValue
     }
@@ -110,13 +109,24 @@ subtractBtn.addEventListener('click', () => {
     if(detectClick> 2){
         totalValue = totalValue - displayValue.value 
         displayValue.value = totalValue
-        // totalValue = newTotalValue
     }
 })
 multiplyBtn.addEventListener('click', () => {
     numberPrev = parseInt(nowValue)
     nowValue = ''
     operator = '*'
+    detectClick++
+    if(detectClick == 1){
+        totalValue = numberPrev 
+    }
+    if(detectClick == 2){
+        totalValue = totalValue * displayValue.value
+        displayValue.value = totalValue
+    }
+    if(detectClick > 2){
+        totalValue *= displayValue.value
+        displayValue.value = totalValue
+    }
 })
 divideBtn.addEventListener('click', () => {
     numberPrev = parseInt(nowValue)
